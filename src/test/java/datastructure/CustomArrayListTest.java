@@ -16,9 +16,18 @@ public class CustomArrayListTest {
     }
 
     @Test
+    @DisplayName("Should Return True If There is No Element Added In List")
     void shouldReturnEmptyTrueIfNoElementAdded() {
         CustomArrayList arrayList = new CustomArrayList();
         Assertions.assertTrue(arrayList.isEmpty(), "should return true");
+    }
+
+    @Test
+    @DisplayName("Should Return False If There is Any Element Present In List")
+    void shouldReturnEmptyFalseIfElementAdded() {
+        CustomArrayList arrayList = new CustomArrayList();
+        arrayList.add("manish");
+        Assertions.assertFalse(arrayList.isEmpty(), "should return false");
     }
 
     @Test
