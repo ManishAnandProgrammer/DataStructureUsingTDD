@@ -1,6 +1,5 @@
 package datastructure;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ public class CustomArrayListTest {
     @DisplayName("Should Return True If There is No Element Added In List")
     void shouldReturnEmptyTrueIfNoElementAdded() {
         CustomArrayList arrayList = new CustomArrayList();
-        Assertions.assertTrue(arrayList.isEmpty(), "should return true");
+        assertTrue(arrayList.isEmpty(), "should return true");
     }
 
     @Test
@@ -27,10 +26,11 @@ public class CustomArrayListTest {
     void shouldReturnEmptyFalseIfElementAdded() {
         CustomArrayList arrayList = new CustomArrayList();
         arrayList.add("manish");
-        Assertions.assertFalse(arrayList.isEmpty(), "should return false");
+        assertFalse(arrayList.isEmpty(), "should return false");
     }
 
     @Test
+    @DisplayName("Add Element In List")
     void shouldAddElementInList() {
         CustomArrayList arrayList = new CustomArrayList();
         assertTrue(arrayList.add("manish"), "Should Able to add Element In List..!");
@@ -43,5 +43,12 @@ public class CustomArrayListTest {
         assertEquals("manish", arrayList.get(0), "First Value Should Be Manish..!");
     }
 
+    @Test
+    void shouldGetFirstStringAsAnandOnSecondGetCall() {
+        CustomArrayList arrayList = new CustomArrayList();
+        arrayList.add("manish");
+        arrayList.add("anand");
+        assertEquals("anand", arrayList.get(1), "Second Value Should Be Anand..!");
+    }
 
 }
