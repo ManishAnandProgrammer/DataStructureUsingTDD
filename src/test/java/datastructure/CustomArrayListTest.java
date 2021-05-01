@@ -3,8 +3,15 @@ package datastructure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class CustomArrayListTest {
 
@@ -41,16 +48,32 @@ public class CustomArrayListTest {
     }
 
     @Test
+    @DisplayName("Should Return manish on get(0) call when only one element with manish in list")
     void shouldGetFirstStringAsManishOnFirstGetCall() {
         arrayList.add("manish");
         assertEquals("manish", arrayList.get(0), "First Value Should Be Manish..!");
     }
 
     @Test
+    @DisplayName("Should Return anand on get(1) call when anand added to list on index 1")
     void shouldGetFirstStringAsAnandOnSecondGetCall() {
         arrayList.add("manish");
         arrayList.add("anand");
         assertEquals("anand", arrayList.get(1), "Second Value Should Be Anand..!");
     }
 
+    @ParameterizedTest
+    @MethodSource("sizeOf_11_List")
+    void shouldAbleToAdd_MoreElement_InInitialSizeList_WhenInitialSizeIs_10(List<String> list) {
+        for(int i = 0; i < 10; i++) {
+            arrayList.add(list.get(i));
+        }
+        String eleventh_String = list.get(10);
+        boolean addOperationResult = arrayList.add(eleventh_String);
+        assertTrue(addOperationResult, "Custom List Should increase it's size and add the Eleventh element");
+    }
+
+    static Stream<Arguments> sizeOf_11_List() {
+        return Stream.of(arguments(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")));
+    }
 }
