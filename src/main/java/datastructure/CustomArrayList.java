@@ -13,16 +13,22 @@ public class CustomArrayList {
         if(strings.length > size) {
             strings[size] = value;
             size++;
+            return true;
         } else {
-            String[] newArray = new String[strings.length * 2];
-            for(int i=0; i < strings.length; i++)
-                newArray[i] = strings[i];
-
-            strings = newArray;
-            add(value);
+            extendCapacity();
+            return add(value);
         }
+    }
 
-        return true;
+    private void extendCapacity() {
+        strings = copyOldArrayValuesInNewBiggerArray();
+    }
+
+    private String[] copyOldArrayValuesInNewBiggerArray() {
+        String[] newArray = new String[strings.length * 2];
+        for(int i=0; i < strings.length; i++)
+            newArray[i] = strings[i];
+        return newArray;
     }
 
     public String get(int index) {
