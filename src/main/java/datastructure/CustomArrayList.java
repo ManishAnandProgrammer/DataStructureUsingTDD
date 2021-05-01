@@ -1,5 +1,7 @@
 package datastructure;
 
+import java.util.Objects;
+
 public class CustomArrayList {
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private int size;
@@ -33,6 +35,7 @@ public class CustomArrayList {
     }
 
     public String get(int index) {
+        Objects.checkIndex(index, capacity);
         return strings[index];
     }
 

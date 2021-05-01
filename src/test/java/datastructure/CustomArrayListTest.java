@@ -3,6 +3,7 @@ package datastructure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -75,5 +76,17 @@ public class CustomArrayListTest {
 
     static Stream<Arguments> sizeOf_11_List() {
         return Stream.of(arguments(List.of("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")));
+    }
+
+    @Test
+    void shouldThrowExceptionIfNegativeIndexProvidedToGetElement() {
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(-1),
+                "Method Should Throw IndexOutOfBoundsException if negative Index Provided..!");
+    }
+
+    @Test
+    void shouldThrowExceptionIfBiggerIndexThanCapacityProvidedToGetElement() {
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(11),
+                "Method Should Throw IndexOutOfBoundsException if Bigger Than Initial Capacity index Provided..!");
     }
 }
