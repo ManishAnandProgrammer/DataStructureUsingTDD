@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,10 +65,9 @@ public class CustomArrayListTest {
 
     @ParameterizedTest
     @MethodSource("sizeOf_11_List")
-    void shouldAbleToAdd_MoreElement_InInitialSizeList_WhenInitialSizeIs_10(List<String> list) {
-        for(int i = 0; i < 10; i++) {
-            arrayList.add(list.get(i));
-        }
+    void shouldBeAbleToAdd_MoreThan_10_Elements_InInitialSizeList_WhenInitialSizeIs_10(List<String> list) {
+        IntStream.range(0, 10)
+                .forEach(index -> arrayList.add(list.get(index)));
         String eleventh_String = list.get(10);
         boolean addOperationResult = arrayList.add(eleventh_String);
         assertTrue(addOperationResult, "Custom List Should increase it's size and add the Eleventh element");
