@@ -1,5 +1,6 @@
 package datastructure;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CustomArrayList {
@@ -35,15 +36,28 @@ public class CustomArrayList {
     }
 
     public String get(int index) {
-        Objects.checkIndex(index, capacity);
+        Objects.checkIndex(index, size);
         return strings[index];
     }
 
     public String remove(int index) {
-        return "k";
+        Objects.checkIndex(index, size);
+        return removeItem(index);
+    }
+
+    private String removeItem(int index) {
+        String itemToRemove = get(index);
+        if(index < size) {
+            for(int i = index; i < size; i++) {
+                strings[i] = strings[i+1];
+            }
+        }
+        size--;
+        return itemToRemove;
     }
 
     public int size() {
         return size;
     }
+
 }
