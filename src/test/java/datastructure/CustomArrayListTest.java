@@ -3,7 +3,6 @@ package datastructure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -88,5 +87,33 @@ public class CustomArrayListTest {
     void shouldThrowExceptionIfBiggerIndexThanCapacityProvidedToGetElement() {
         assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(11),
                 "Method Should Throw IndexOutOfBoundsException if Bigger Than Initial Capacity index Provided..!");
+    }
+
+    @ParameterizedTest
+    @MethodSource("sizeOf_11_List")
+    void shouldRemoveElementAndReturnIt(List<String> list) {
+        IntStream.rangeClosed(0, 10)
+                .forEach(index -> arrayList.add(list.get(index)));
+
+        String removedElement = arrayList.remove(11);
+        assertEquals("k", removedElement, "Removed Element Should be Returned..!");
+    }
+
+    @ParameterizedTest
+    @MethodSource("list_size_check")
+    void shouldReturnSize_0_OnEmptyList(List<String> list) {
+        list.forEach(arrayList::add);
+        int size = arrayList.size();
+        assertEquals(list.size(), size, "arraylist size should be same as input list");
+    }
+
+    static Stream<Arguments> list_size_check() {
+        return Stream.of(
+                    arguments(List.of()),
+                    arguments(List.of("a")),
+                    arguments(List.of("a", "b")),
+                    arguments(List.of("a", "b", "c", "d")),
+                    arguments(List.of("a", "b", "c", "d", "e"))
+                );
     }
 }

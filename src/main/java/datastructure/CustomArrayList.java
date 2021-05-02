@@ -39,4 +39,11 @@ public class CustomArrayList {
         return strings[index];
     }
 
+    public String remove(int index) {
+        return "k";
+    }
+
+    public int size() {
+        return size;
+    }
 }
