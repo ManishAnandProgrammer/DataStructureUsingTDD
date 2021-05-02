@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,6 +15,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+@DisplayName("On CustomArrayList when")
 public class CustomArrayListTest {
 
     private CustomArrayList arrayList;
@@ -26,47 +26,48 @@ public class CustomArrayListTest {
     }
 
     @Test
-    @DisplayName("Instance Creation Test")
+    @DisplayName("creating object")
     void shouldCreateCustomArrayListObject() {
         assertNotNull(arrayList, "CustomArrayList Object should created..!");
     }
 
     @Test
-    @DisplayName("Should Return True If There is No Element Added In List")
+    @DisplayName("calling isEmpty() on empty list")
     void shouldReturnEmptyTrueIfNoElementAdded() {
         assertTrue(arrayList.isEmpty(), "should return true");
     }
 
     @Test
-    @DisplayName("Should Return False If There is Any Element Present In List")
+    @DisplayName("calling isEmpty() on a list having item")
     void shouldReturnEmptyFalseIfElementAdded() {
         arrayList.add("manish");
         assertFalse(arrayList.isEmpty(), "should return false");
     }
 
     @Test
-    @DisplayName("Add Element In List")
+    @DisplayName("adding element in list")
     void shouldAddElementInList() {
-        assertTrue(arrayList.add("manish"), "Should Able to add Element In List..!");
+        assertTrue(arrayList.add("manish"), "Should return true after element added..!");
     }
 
     @Test
-    @DisplayName("Should Return manish on get(0) call when only one element with manish in list")
+    @DisplayName("calling get(0) with only one item in list")
     void shouldGetFirstStringAsManishOnFirstGetCall() {
         arrayList.add("manish");
-        assertEquals("manish", arrayList.get(0), "First Value Should Be Manish..!");
+        assertEquals("manish", arrayList.get(0), "should return first value manish..!");
     }
 
     @Test
-    @DisplayName("Should Return anand on get(1) call when anand added to list on index 1")
+    @DisplayName("calling get(1) with only two items in list")
     void shouldGetFirstStringAsAnandOnSecondGetCall() {
         arrayList.add("manish");
         arrayList.add("anand");
-        assertEquals("anand", arrayList.get(1), "Second Value Should Be Anand..!");
+        assertEquals("anand", arrayList.get(1), "should return second value manish..!");
     }
 
     @ParameterizedTest
     @MethodSource("sizeOf_11_List")
+    @DisplayName("given initial list size 10, trying to add 11th item")
     void shouldBeAbleToAdd_MoreThan_10_Elements_InInitialSizeList_WhenInitialSizeIs_10(List<String> list) {
         IntStream.range(0, 10)
                 .forEach(index -> arrayList.add(list.get(index)));
@@ -80,23 +81,26 @@ public class CustomArrayListTest {
     }
 
     @Test
+    @DisplayName("negative index provided to get element")
     void shouldThrowExceptionIfNegativeIndexProvidedToGetElement() {
         assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(-1),
                 "Method Should Throw IndexOutOfBoundsException if negative Index Provided..!");
     }
 
     @Test
-    void shouldThrowExceptionIfBiggerIndexThanCapacityProvidedToGetElement() {
+    @DisplayName("bigger index than size provided to get element")
+    void shouldThrowExceptionIfBiggerIndexThanSizeProvidedToGetElement() {
         assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(11),
-                "Method Should Throw IndexOutOfBoundsException if Bigger Than Initial Capacity index Provided..!");
+                "Method Should Throw IndexOutOfBoundsException if Bigger Than size index Provided..!");
     }
 
     @ParameterizedTest
     @MethodSource("list_size_check")
+    @DisplayName("calling size()")
     void shouldReturnSizeEqualToNumberOfElementsPresentInList(List<String> list) {
         list.forEach(arrayList::add);
         int size = arrayList.size();
-        assertEquals(list.size(), size, "arraylist size should be same as input list");
+        assertEquals(list.size(), size, "Should Give Size as Number of Items in List");
     }
 
     static Stream<Arguments> list_size_check() {
@@ -111,6 +115,7 @@ public class CustomArrayListTest {
 
     @ParameterizedTest
     @MethodSource("remove_item_check")
+    @DisplayName("remove() method called")
     void shouldRemoveElementAndReturnIt(List<String> list) {
         list.forEach(arrayList::add);
 
@@ -130,6 +135,7 @@ public class CustomArrayListTest {
 
     @ParameterizedTest
     @MethodSource("sizeOf_11_List")
+    @DisplayName("remove() method called on 11 size() list")
     void whenRemovedItemFromArraylistOfSize_11_ItShouldReturnSize_10(List<String> list) {
         list.forEach(arrayList::add);
 
@@ -140,6 +146,7 @@ public class CustomArrayListTest {
 
     @ParameterizedTest
     @MethodSource("shift_elements_on_remove_check")
+    @DisplayName("remove() called check shifting items")
     void whenRemoveItemFrom_List_All_Remaining_Item_FromListShould_ShiftLeftOneIndex(List<String> list,
                                                                                           int removeIndex,
                                                                                           String expectedToString) {
@@ -151,7 +158,7 @@ public class CustomArrayListTest {
             actualArray[i] = arrayList.get(i);
 
         String actual = String.join(", ", actualArray);
-        assertEquals(expectedToString, actual);
+        assertEquals(expectedToString, actual, "Items should shift to left");
     }
 
     static Stream<Arguments> shift_elements_on_remove_check() {
@@ -165,19 +172,21 @@ public class CustomArrayListTest {
     }
 
     @Test
+    @DisplayName("trying to remove element from empty list")
     void whenTryingToRemoveElementFromEmptyListIsShouldThrowIndexOutOfBoundsException() {
         assertThrows(IndexOutOfBoundsException.class , () -> {
            arrayList.remove(0);
-        });
+        }, "IndexOutOfBoundsException should be thrown here");
     }
 
     @ParameterizedTest
     @MethodSource("remove_item_check")
+    @DisplayName("trying to remove element using bigger than size() index")
     void whenTryingToRemoveElementUsingIndexBiggerThanOrEqualToSizeShouldThrowOutOfBoundException(List<String> list) {
         list.forEach(arrayList::add);
         assertThrows(IndexOutOfBoundsException.class, () -> {
             arrayList.remove(list.size());
-        });
+        }, "IndexOutOfBoundsException should be thrown here");
     }
 
 }
