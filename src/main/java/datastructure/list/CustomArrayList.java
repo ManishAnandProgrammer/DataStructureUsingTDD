@@ -1,4 +1,4 @@
-package datastructure;
+package datastructure.list;
 
 import java.util.Objects;
 
