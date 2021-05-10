@@ -2,16 +2,14 @@ package datastructure.recursion.string_questions;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 public class PrintAllPalindrome
 {
-	public static void main(String[] args) {
-		allPalPartitions("nitin");
-	}
 
-	private static void allPalPartitions(String input) {
+	public List<List<String>> allPalPartitions(String input) {
 		int inputStringLength = input.length();
-		ArrayList<ArrayList<String>> allPartition = new ArrayList<>();
+		List<List<String>> allPartition = new ArrayList<>();
 		Deque<String> currPartition = new LinkedList<>();
 		allPalindromePartitions(allPartition, currPartition, 0, inputStringLength, input);
 
@@ -21,10 +19,10 @@ public class PrintAllPalindrome
 			}
 			System.out.println();
 		}
-
+		return allPartition;
 	}
 
-	private static void allPalindromePartitions(ArrayList<ArrayList<String>> parentList,
+	private static void allPalindromePartitions(List<List<String>> parentList,
 												Deque<String> currentChildList, int startIndex, int lengthOfInput, String input)
 	{
 		if (startIndex >= lengthOfInput) {

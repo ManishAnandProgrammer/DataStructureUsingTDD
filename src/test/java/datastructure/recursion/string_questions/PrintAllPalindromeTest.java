@@ -11,17 +11,17 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class AllPossiblePalindromicPortionTest {
+class PrintAllPalindromeTest {
 
-//    @ParameterizedTest
-//    @MethodSource("palindromicPortion")
-//    void test(String value, List<List<String>> expectedPalindromicPortions) {
-//        AllPossiblePalindromicPortion palindromicPortion = new AllPossiblePalindromicPortion();
-//        List<List<String>> actualPalindromicPortions =
-//                palindromicPortion.palindromicPortionOf(value);
-//
-//        assertThat(actualPalindromicPortions).containsExactlyInAnyOrderElementsOf(expectedPalindromicPortions);
-//    }
+    @ParameterizedTest
+    @MethodSource("palindromicPortion")
+    void test(String value, List<List<String>> expectedPalindromicPortions) {
+        PrintAllPalindrome palindromicPortion = new PrintAllPalindrome();
+        List<List<String>> actualPalindromicPortions =
+                palindromicPortion.allPalPartitions(value);
+
+        assertThat(actualPalindromicPortions).containsExactlyInAnyOrderElementsOf(expectedPalindromicPortions);
+    }
 
     static Stream<Arguments> palindromicPortion() {
         return Stream.of(
