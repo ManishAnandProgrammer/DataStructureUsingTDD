@@ -19,5 +19,6 @@ public class MazePath {
 
         path(currentRow, currentColumn+1, destinationRow, destinationColumn, result+"H");
         path(currentRow+1, currentColumn, destinationRow, destinationColumn, result+"V");
+        path(currentRow+1, currentColumn+1, destinationRow, destinationColumn, result+"D");
     }
 }
