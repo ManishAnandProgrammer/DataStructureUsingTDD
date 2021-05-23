@@ -42,4 +42,9 @@ public class GenericTreeTest {
     void heightTest() {
         assertEquals(3, tree.height());
     }
+
+    @Test
+    void traverse() {
+        tree.traverse();
+    }
 }

@@ -98,4 +98,18 @@ public class GenericTree {
         }
         return height+1;
     }
+
+    public void traverse() {
+        traverseRecursively(root);
+    }
+
+    private void traverseRecursively(final Node node) {
+        System.out.println("Node Pre :- " + node.data);
+        for(Node child : node.children) {
+            System.out.println("Edge Pre :- " + node.data + " - " + child.data);
+            traverseRecursively(child);
+            System.out.println("Edge Post :- " + node.data + " - " + child.data);
+        }
+        System.out.println("Node Post :- " + node.data);
+    }
 }
