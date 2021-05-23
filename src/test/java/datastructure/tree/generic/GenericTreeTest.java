@@ -52,4 +52,14 @@ public class GenericTreeTest {
     void levelOrderTraverse() {
         tree.levelOrderTraverse();
     }
+
+    @Test
+    void levelOrderTraverseInLine() {
+        tree.levelOrderTraverseInLine();
+    }
+
+    @Test
+    void levelOrderTraverseInLineZigZag() {
+        tree.levelOrderTraverseInLineZigZag();
+    }
 }

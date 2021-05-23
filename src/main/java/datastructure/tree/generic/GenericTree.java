@@ -127,5 +127,53 @@ public class GenericTree {
         System.out.println(" .");
     }
 
+    public void levelOrderTraverseInLine() {
+        Queue<Node> parentQueue = new ArrayDeque<>();
+        parentQueue.add(root);
 
+        Queue<Node> childQueue = new ArrayDeque<>();
+        while(parentQueue.size() > 0) {
+            Node node = parentQueue.remove();
+            System.out.print(node.data + " ");
+
+            for(Node child: node.children) {
+                childQueue.add(child);
+            }
+
+            if(parentQueue.size() == 0) {
+                parentQueue = childQueue;
+                childQueue = new ArrayDeque<>();
+                System.out.println();
+            }
+        }
+    }
+
+    public void levelOrderTraverseInLineZigZag() {
+        Stack<Node> parentStack = new Stack<>();
+        parentStack.push(root);
+
+        Stack<Node> childStack = new Stack<>();
+        int level = 1;
+        while(parentStack.size() > 0) {
+            Node node = parentStack.pop();
+            System.out.print(node.data + " ");
+
+            if(level % 2 == 1) {
+                for(int i = 0; i < node.children.size(); i++) {
+                    childStack.push(node.children.get(i));
+                }
+            } else {
+                for(int i = node.children.size() - 1; i >= 0; i--) {
+                    childStack.push(node.children.get(i));
+                }
+            }
+
+            if(parentStack.size() == 0) {
+                parentStack = childStack;
+                childStack = new Stack<>();
+                level++;
+                System.out.println();
+            }
+        }
+    }
 }
