@@ -85,4 +85,17 @@ public class GenericTree {
         }
         return Math.max(max, root.data);
     }
+
+    public int height() {
+       return heightOfTree(root);
+    }
+
+    private int heightOfTree(Node root) {
+        int height = -1;
+        for(Node child: root.children) {
+            int childHeight = heightOfTree(child);
+            height = Math.max(height, childHeight);
+        }
+        return height+1;
+    }
 }
