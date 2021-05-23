@@ -62,4 +62,9 @@ public class GenericTreeTest {
     void levelOrderTraverseInLineZigZag() {
         tree.levelOrderTraverseInLineZigZag();
     }
+
+    @Test
+    void levelOrderTraverseWithoutSecondQueue() {
+        tree.levelOrderTraverseWithoutSecondQueue();
+    }
 }

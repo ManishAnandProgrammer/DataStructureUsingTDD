@@ -176,4 +176,25 @@ public class GenericTree {
             }
         }
     }
+
+    public void levelOrderTraverseWithoutSecondQueue() {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        queue.add(new Node(-1));
+
+        while(queue.size() > 0) {
+            Node node = queue.remove();
+            if(node.data != -1) {
+                System.out.print(node.data + " ");
+                for(Node childNode: node.children) {
+                    queue.add(childNode);
+                }
+            } else {
+                if(queue.size() > 0) {
+                    queue.add(new Node(-1));
+                    System.out.println();
+                }
+            }
+        }
+    }
 }
