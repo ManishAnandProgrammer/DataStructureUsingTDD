@@ -67,4 +67,9 @@ public class GenericTreeTest {
     void levelOrderTraverseWithoutSecondQueue() {
         tree.levelOrderTraverseWithoutSecondQueue();
     }
+
+    @Test
+    void levelOrderTraverseUsingCounter() {
+        tree.levelOrderTraverseUsingCounter();
+    }
 }
