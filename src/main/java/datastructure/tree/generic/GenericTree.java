@@ -248,4 +248,16 @@ public class GenericTree {
             }
         }
     }
+
+    public void mirror() {
+        mirrorOfGenericTree(root);
+        levelOrderTraverseInLine();
+    }
+
+    private void mirrorOfGenericTree(Node node) {
+        for(Node childNode: node.children) {
+            mirrorOfGenericTree(childNode);
+        }
+        Collections.reverse(node.children);
+    }
 }

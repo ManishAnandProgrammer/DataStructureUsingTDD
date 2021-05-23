@@ -77,4 +77,9 @@ public class GenericTreeTest {
     void levelOrderTraverseUsingPairClass() {
         tree.levelOrderTraverseUsingPairClass();
     }
+
+    @Test
+    void mirror() {
+        tree.mirror();
+    }
 }
