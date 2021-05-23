@@ -47,4 +47,9 @@ public class GenericTreeTest {
     void traverse() {
         tree.traverse();
     }
+
+    @Test
+    void levelOrderTraverse() {
+        tree.levelOrderTraverse();
+    }
 }

@@ -1,8 +1,6 @@
 package datastructure.tree.generic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class GenericTree {
 
@@ -112,4 +110,22 @@ public class GenericTree {
         }
         System.out.println("Node Post :- " + node.data);
     }
+
+    public void levelOrderTraverse() {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+
+        while(queue.size() > 0) {
+            Node node = queue.remove();
+            System.out.print(node.data + " ");
+
+            for(Node child : node.children) {
+                queue.add(child);
+            }
+        }
+
+        System.out.println(" .");
+    }
+
+
 }
