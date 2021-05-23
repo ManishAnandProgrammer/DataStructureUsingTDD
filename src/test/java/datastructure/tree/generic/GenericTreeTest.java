@@ -72,4 +72,9 @@ public class GenericTreeTest {
     void levelOrderTraverseUsingCounter() {
         tree.levelOrderTraverseUsingCounter();
     }
+
+    @Test
+    void levelOrderTraverseUsingPairClass() {
+        tree.levelOrderTraverseUsingPairClass();
+    }
 }

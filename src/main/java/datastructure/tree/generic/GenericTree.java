@@ -217,4 +217,35 @@ public class GenericTree {
             System.out.println();
         }
     }
+
+    public void levelOrderTraverseUsingPairClass() {
+        class Pair {
+            Node node;
+            int level;
+
+            Pair(Node node, int level) {
+                this.node = node;
+                this.level = level;
+            }
+        }
+
+        Queue<Pair> queue = new ArrayDeque<>();
+        queue.add(new Pair(root, 1));
+
+        int level = 1;
+
+        while(queue.size() > 0) {
+            Pair pair = queue.remove();
+            if(pair.level > level) {
+                level = pair.level;
+                System.out.println();
+            }
+
+            System.out.print(pair.node.data + " ");
+
+            for(Node childNode: pair.node.children) {
+                queue.add(new Pair(childNode, level+1));
+            }
+        }
+    }
 }
